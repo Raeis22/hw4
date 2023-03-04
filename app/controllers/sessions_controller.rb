@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   def create
     @user = User.find_by({"email" => params["email"]})
     if @user
-      if @user["password"] == User.find_by({"password" => params["password"]})
+      if @user["password"] == params["password"]
         flash["notice"] = "You logged in!"
         redirect_to "/places"
       else

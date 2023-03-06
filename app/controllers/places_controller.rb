@@ -1,12 +1,16 @@
 class PlacesController < ApplicationController
 
   def index
-    @places = Place.all
+    @places = Place.where({ "user_id" => @current_user["id"]  })
   end
 
   def show
-    @place = Place.find_by({ "id" => params["id"] })
-    @posts = Post.where({ "place_id" => @place["id"] })
+    if @current_user
+      @place = Place.find_by({ "id" => params["id"] })
+      @posts = Post.where({ "place_id" => @place["id"], "user_id" => @current_user["id"]  })
+    else
+      redirect_to "/session/new"
+    end
   end
 
   def new

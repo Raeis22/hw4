@@ -13,10 +13,10 @@
     <p>
       <% if @current_user %>
         Hey, <%= @current_user["username"] %>
-        <a href="/">Home</a>
+        <a href="/">Home</a> | 
         <a href="/logout">Log out</a>
       <% else %>
-        <a href="/login">Log in</a>
+        <a href="/login">Log in</a> | 
         <a href="/users/new">Sign up</a>
       <% end %>
     </p>
